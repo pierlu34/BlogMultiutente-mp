@@ -5,7 +5,10 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --background-color: #8f00ff;
+  --text-color: #000000;
+  --button-color: #007bff;
+  --secondary-background: #f9f4fb;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -22,12 +25,19 @@ a:hover {
   color: #535bf2;
 }
 
-body {
+html {
   margin: 0;
-  display: flex;
-  place-items: center;
+  padding: 10px;
+  height: 100%;
+  background-color: var(--background-color);
+}
+
+body {
   min-width: 320px;
   min-height: 100vh;
+  height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 h1 {
@@ -57,7 +67,6 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
   }
   a:hover {
     color: #747bff;
