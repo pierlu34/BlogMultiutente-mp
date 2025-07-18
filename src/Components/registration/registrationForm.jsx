@@ -48,7 +48,7 @@ export default function RegistrationForm() {
     <form className={styles.registrationForm} onSubmit={handleSubmit}>
       <h2 className={styles.formTitle}>Registrazione</h2>
 
-      <div>
+      <div className={styles.formGroup}>
         <label htmlFor="username">Username</label>
         <input
           type="text"
@@ -59,8 +59,8 @@ export default function RegistrationForm() {
         />
       </div>
 
-      <div>
-         <label htmlFor="email">Email</label>
+      <div className={styles.formGroup}>
+        <label htmlFor="email">Email</label>
         <input
           type="email"
           name="email"
@@ -70,7 +70,7 @@ export default function RegistrationForm() {
         />
       </div>
 
-      <div>
+      <div className={styles.formGroup}>
         <label htmlFor="password">Password</label>
         <input
           type="password"
@@ -81,7 +81,7 @@ export default function RegistrationForm() {
         />
       </div>
 
-      <div>
+      <div className={styles.formGroup}>
         <label htmlFor="confirmPassword">Conferma Password</label>
         <input
           type="password"
