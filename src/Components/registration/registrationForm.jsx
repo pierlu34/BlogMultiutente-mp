@@ -1,8 +1,9 @@
 import { useState } from "react";
 import styles from "./registrationForm.module.scss";
 import { Link } from "react-router-dom";
+import { signUp} from "./registration.service.js";
 
-export default function RegistrationForm() {
+const RegistrationForm = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -20,29 +21,37 @@ export default function RegistrationForm() {
 
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  async function handleSubmit (e) {
     e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const formJson = Object.fromEntries(formData.entries());
 
     // ✅ Validazioni
-    if (formData.password.length < 6) {
+    /*if (formData.password.length < 6) {
       setError("La password deve contenere almeno 6 caratteri.");
       return;
-    }
+    }*/
 
     if (formData.password !== formData.confirmPassword) {
       setError("Le password non coincidono.");
       return;
     }
+    const payload = {
+      username: formJson.username,
+      email: formJson.email,
+      password: formJson.password,
+    };
 
-    setError("");
-    console.log("Dati registrazione:", formData);
-
-    // Per ora: solo log dei dati
-    console.log("Dati registrazione:", formData);
-
-    // Reset form (opzionale)
-    setFormData({ username: "", email: "", password: "", confirmPassword: "" });
-  };
+    try {
+      const response = await signUp(payload);
+      console.log("REGISTRAZIONE AVVENUTA", response);
+      // eventualmente fai un redirect o pulisci il form
+    } catch (error) {
+      console.error("Errore nella registrazione:", error);
+      setError("Registrazione fallita. Riprova.");
+    }
+  }
 
   return (
     <form className={styles.registrationForm} onSubmit={handleSubmit}>
@@ -102,3 +111,5 @@ export default function RegistrationForm() {
     </form>
   );
 }
+
+export default RegistrationForm;
