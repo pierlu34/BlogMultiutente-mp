@@ -1,15 +1,14 @@
-import './App.scss'
-import RegistrationForm from './Components/registration/registrationForm.jsx'
+import { Outlet, Link } from "react-router";
+import loginForm from "./Components/login/loginForm.jsx";
+import registration from "./Components/registration/registrationForm.jsx";
+
 
 function App() {
   return (
-    <>
-       <div>
-      <h1>Blog Multiutente</h1>
-      <RegistrationForm />
-    </div>
-    </>
-  )
+    <main className="main_content">
+      <Outlet />
+    </main>
+  );
 }
 
-export default App
+export default App;

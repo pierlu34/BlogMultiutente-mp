@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 
-.registrationForm {
+.LoginForm {
   font-family: 'Montserrat', sans-serif;
   display: flex;
   flex-direction: column;
@@ -52,10 +52,10 @@
   button {
     padding: 10px;
     font-size: 1rem;
-    border:  1rem;
+    border: 1rem;
     background-color: var(--button-color, #007bff);
     color: var(--text-color, #000);
-    border-radius: solid  6px;
+    border-radius: 6px;
     cursor: pointer;
     margin-top: 10px;
     transition: background-color 0.3s transform 0.2s;

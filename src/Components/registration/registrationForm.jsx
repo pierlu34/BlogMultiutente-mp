@@ -105,7 +105,7 @@ const RegistrationForm = () => {
 
       <button type="submit">Registrati</button>
 
-      <Link to="/register">
+      <Link to="/">
         <button type="button">Già registrato? Logga qui!</button>
       </Link>
     </form>
