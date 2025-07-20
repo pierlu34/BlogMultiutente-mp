@@ -3,7 +3,7 @@ import { login } from "../../service/login.service.js";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import styles from "./loginForm.module.scss";
-//import { setUser } from "../../reducers/user.slice.js";
+import { setUser } from "../../reducers/user.slice.js";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -43,11 +43,9 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="card">
-      <h2>Accedi</h2>
-      <h2 className="form-title">Login </h2>
-
-      <form onSubmit={submitForm}>
+    <form className={styles.loginForm} onSubmit={submitForm}>
+      <h2 className={styles.formTitle}>Login</h2>
+    <div className={styles.formGroup}>
         <input
           required
           id="email"
@@ -57,7 +55,9 @@ const LoginForm = () => {
           type="email"
           placeholder="Email"
         />
+        </div>
 
+    <div className={styles.formGroup}>
         <input
           required
           id="password"
@@ -69,14 +69,15 @@ const LoginForm = () => {
         />
 
         <button type="submit">Accedi</button>
-      </form>
+    </div>
+      
 
-      <p>Hai dimenticato la password?</p>
+      <button type="submit">Hai dimenticato la password?</button>
 
       <Link to="/register">
         <button type="button">Sei nuovo? Registrati qui!</button>
       </Link>
-    </div>
+    </form>
   );
 };
 

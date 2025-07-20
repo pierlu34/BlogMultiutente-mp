@@ -10,7 +10,7 @@ export const routes = [
      errorElement: <errorPage/>,
     children: [
       {
-        /*element: <AuthLayout />,*/
+        /*element: <homePage />,*/
         children: [
           {
             index: true,
