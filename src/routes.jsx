@@ -1,26 +1,36 @@
 import App from "./App.jsx";
-//import AuthLayout from "./components/AuthLayout/AuthLayout";
 import LoginForm from "./Components/login/LoginForm";
 import RegistrationForm from "./Components/registration/RegistrationForm";
+import HomePage from "./Components/authPage/homePage/homePage.jsx";
+import ResetPasswordForm from "./Components/authPage/Password/Resetpassword/ResetpasswordForm.jsx";
+import ForgotPasswordPage from "./Components/authPage/Password/ForgotPassword/ForgotPasswordPage.jsx"; 
+import EmailPage from "./Components/authPage/Password/EmailPage/EmailPage.jsx";
+
 
 export const routes = [
   {
     path: "/",
     element: <App />,
-     errorElement: <errorPage/>,
     children: [
       {
-        /*element: <homePage />,*/
-        children: [
-          {
-            index: true,
-           element: <LoginForm />,
-          },
-          {
-            path: "register",
-            element: <RegistrationForm />,
-          },
-        ],
+        index: true,
+        element: <LoginForm />,
+      },
+      {
+        path: "reset-password", 
+        element: <ForgotPasswordPage />,
+      },
+      {
+        path: "email-reset-password", 
+        element: <EmailPage />,
+      },
+      {
+        path: "register",
+        element: <RegistrationForm />,
+      },
+      {
+        path: "home",
+        element: <HomePage />,
       },
     ],
   },

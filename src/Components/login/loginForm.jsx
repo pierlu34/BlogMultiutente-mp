@@ -32,7 +32,7 @@ const LoginForm = () => {
 
       if (user) {
         dispatch(setUser(user));
-        navigate("/activities");
+        navigate("/Home");
       } else {
         alert("Login fallito. Credenziali errate?");
       }
@@ -71,10 +71,11 @@ const LoginForm = () => {
         <button type="submit">Accedi</button>
     </div>
       
+      <Link to="/email-reset-password">
+      <p>Hai dimenticato la password?</p>
+      </Link>
 
-      <button type="submit">Hai dimenticato la password?</button>
-
-      <Link to="/register">
+      <Link to="/HomePage">
         <button type="button">Sei nuovo? Registrati qui!</button>
       </Link>
     </form>
