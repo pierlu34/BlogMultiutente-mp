@@ -47,7 +47,7 @@ const RegistrationForm = () => {
     const { username, email, password, confirmPassword } = formData;
 
     const isNameValid = isNotEmpty(username);
-    const isEmailValidFlag = isNotEmpty(email) && isEmailValidFlag(email);
+    const isEmailValidFlag = isNotEmpty(email) && isEmail(email);
     const isPasswordValid =
       hasMinLength(password, 8) && hasMaxLength(password, 60);
     const passwordMatch = isEqualToOtherValue(password, confirmPassword);
@@ -58,7 +58,7 @@ const RegistrationForm = () => {
 
     if (!isNotEmpty(email)) {
       handleFormErrorsChange("email", "L'email non può essere vuota");
-    } else if (!isEmailValid(email)) {
+    } else if (!isEmail(email)) {
       handleFormErrorsChange("email", "L'email non è valida");
     }
 
@@ -100,7 +100,7 @@ const RegistrationForm = () => {
 
       const response = await signUp(payload);
       console.log("REGISTRAZIONE AVVENUTA", response);
-      navigate("/login");
+      navigate("/");
     } catch (err) {
       console.error("Errore nella registrazione:", err);
       setError("Registrazione fallita. Riprova.");
