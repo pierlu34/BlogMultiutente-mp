@@ -43,42 +43,45 @@ const LoginForm = () => {
   };
 
   return (
-    <form className={styles.loginForm} onSubmit={submitForm}>
-      <h2 className={styles.formTitle}>Login</h2>
-    <div className={styles.formGroup}>
-        <input
-          required
-          id="email"
-          value={input.email}
-          name="email"
-          onChange={handleChange}
-          type="email"
-          placeholder="Email"
-        />
-        </div>
+  <form className={styles.loginForm} onSubmit={submitForm}>
+  <h2 className={styles.formTitle}>Login</h2>
 
-    <div className={styles.formGroup}>
-        <input
-          required
-          id="password"
-          value={input.password}
-          name="password"
-          onChange={handleChange}
-          type="password"
-          placeholder="Password"
-        />
+  <div className={styles.formGroup}>
+    <label htmlFor="email" className={styles.label}>Email</label>
+    <input
+      required
+      id="email"
+      value={input.email}
+      name="email"
+      onChange={handleChange}
+      type="email"
+      placeholder="Email"
+    />
+  </div>
 
-        <button type="submit">Accedi</button>
-    </div>
-      
-      <Link to="/email-reset-password">
-      <p>Hai dimenticato la password?</p>
-      </Link>
+  <div className={styles.formGroup}>
+    <label htmlFor="password"className={styles.label}>Password</label>
+    <input
+      required
+      id="password"
+      value={input.password}
+      name="password"
+      onChange={handleChange}
+      type="password"
+      placeholder="Password"
+    />
+  </div>
 
-      <Link to="/HomePage">
-        <button type="button">Sei nuovo? Registrati qui!</button>
-      </Link>
-    </form>
+  <button type="submit">Accedi</button>
+
+  <Link to="/email-reset-password">
+    <p>Hai dimenticato la password?</p>
+  </Link>
+
+  <Link to="/register">
+    <button type="button">Sei nuovo? Registrati qui!</button>
+  </Link>
+</form>
   );
 };
 

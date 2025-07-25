@@ -1,0 +1,27 @@
+.footer {
+  background-color: #222;
+  color: white;
+  padding: 16px;
+  text-align: center;
+  border-top: 1px solid #444;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 18px;
+}
+
+.footer-nav a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-nav a:hover {
+  color: #00bcd4;
+}
