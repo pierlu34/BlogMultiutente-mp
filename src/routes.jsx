@@ -5,7 +5,7 @@ import HomePage from "./Components/authPage/HomePage/homePage.jsx";
 import ResetPasswordForm from "./Components/authPage/Password/Resetpassword/ResetpasswordForm.jsx";
 import ForgotPasswordPage from "./Components/authPage/Password/ForgotPassword/ForgotPasswordPage.jsx"; 
 import EmailPage from "./Components/authPage/Password/EmailPage/EmailPage.jsx";
-
+import ProfilePage from "./Components/authPage/ProfilePage/ProfilePage.jsx";
 
 export const routes = [
   {
@@ -31,6 +31,10 @@ export const routes = [
       {
         path: "home",
         element: <HomePage />,
+      },
+      {
+        path: "profile",
+        element: <ProfilePage />,
       },
     ],
   },

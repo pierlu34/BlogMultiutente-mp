@@ -32,7 +32,7 @@ const LoginForm = () => {
 
       if (user) {
         dispatch(setUser(user));
-        navigate("/Home");
+        navigate("/home");
       } else {
         alert("Login fallito. Credenziali errate?");
       }

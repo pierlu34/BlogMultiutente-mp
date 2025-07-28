@@ -1,16 +1,25 @@
 import { Link } from "react-router-dom";
-import "./footer.module.scss"; // o footer.module.scss se preferisci
+import { AiOutlineHome, AiOutlinePlusCircle, AiOutlineUser } from "react-icons/ai";
+import styles from "./Footer.module.scss";
 
-const footer = () => {
+const Footer = () => {
   return (
-    <footer className="footer">
-      <nav className="footer-nav">
-        {/*<Link to="/home">🏠 Home</Link>
-        <Link to="/add-post">➕ Aggiungi Post</Link>
-        <Link to="/profile">👤 Profilo</Link>*/}
-      </nav>
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        <Link to="/home" className={styles["icon-button"]}>
+          <AiOutlineHome />
+        </Link>
+
+        <Link to="/add-post" className={styles["icon-button"]}>
+          <AiOutlinePlusCircle />
+        </Link>
+
+        <Link to="/profile" className={styles["icon-button"]}>
+          <AiOutlineUser />
+        </Link>
+      </div>
     </footer>
   );
 };
 
-export default footer;
+export default Footer;

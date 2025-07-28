@@ -12,6 +12,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { routes } from "./routes.jsx";
 import { createRoot } from "react-dom/client";
 import { StrictMode } from 'react';
+import SocketProvider from "./contexts/SocketProvider.jsx";
 
 const router = createBrowserRouter(routes);
 
@@ -19,7 +20,9 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
       <PersistGate persistor={persistor}>
+        <SocketProvider>
         <RouterProvider router={router} />
+        </SocketProvider>
       </PersistGate>
     </Provider>
   </StrictMode>
