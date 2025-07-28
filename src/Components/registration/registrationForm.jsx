@@ -1,7 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./registrationForm.module.scss";
-import { Link } from "react-router-dom";
-import { signUp} from "./registration.service.js";
+import { Link, useNavigate } from "react-router-dom";
+import { signUp, usernameAvailable } from "./registration.service.js";
+import {
+  hasMaxLength,
+  hasMinLength,
+  isEqualToOtherValue,
+  isNotEmpty,
+  isEmail,
+  isAlphaNum,
+} from "../../validators/validators.js";
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +19,14 @@ const RegistrationForm = () => {
     confirmPassword: "",
   });
 
+  const [formErrors, setFormErrors] = useState({});
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(formErrors);
+  }, [formErrors]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -19,42 +35,80 @@ const RegistrationForm = () => {
     }));
   };
 
-  const [error, setError] = useState("");
+  const handleFormErrorsChange = (key, value) => {
+    setFormErrors((prevState) => ({ ...prevState, [key]: value }));
+  };
 
-  async function handleSubmit (e) {
-    e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-    const formJson = Object.fromEntries(formData.entries());
+  const submitForm = async (event) => {
+    event.preventDefault();
+    setError("");
+    setFormErrors({});
 
-    // ✅ Validazioni
-    /*if (formData.password.length < 6) {
-      setError("La password deve contenere almeno 6 caratteri.");
-      return;
-    }*/
+    const { username, email, password, confirmPassword } = formData;
 
-    if (formData.password !== formData.confirmPassword) {
-      setError("Le password non coincidono.");
+    const isNameValid = isNotEmpty(username);
+    const isEmailValidFlag = isNotEmpty(email) && isEmail(email);
+    const isPasswordValid =
+      hasMinLength(password, 8) && hasMaxLength(password, 60);
+    const passwordMatch = isEqualToOtherValue(password, confirmPassword);
+
+    if (!isNameValid) {
+      handleFormErrorsChange("username", "Il nome non può essere vuoto");
+    }
+
+    if (!isNotEmpty(email)) {
+      handleFormErrorsChange("email", "L'email non può essere vuota");
+    } else if (!isEmail(email)) {
+      handleFormErrorsChange("email", "L'email non è valida");
+    }
+
+    if (!isPasswordValid) {
+      handleFormErrorsChange(
+        "password",
+        "La password deve avere tra 8 e 60 caratteri"
+      );
+    }
+
+    if (!passwordMatch) {
+      handleFormErrorsChange(
+        "confirmPassword",
+        "Le password non corrispondono"
+      );
+    }
+
+    if (
+      !isNameValid ||
+      !isEmailValidFlag ||
+      !isPasswordValid ||
+      !passwordMatch
+    ) {
       return;
     }
-    const payload = {
-      username: formJson.username,
-      email: formJson.email,
-      password: formJson.password,
-    };
 
     try {
+      const usernameCheck = await usernameAvailable(username);
+      if (!usernameCheck.available) {
+        handleFormErrorsChange("username", "Username non disponibile");
+        return;
+      }
+
+      const payload = {
+        username,
+        email,
+        password,
+      };
+
       const response = await signUp(payload);
       console.log("REGISTRAZIONE AVVENUTA", response);
-      // eventualmente fai un redirect o pulisci il form
-    } catch (error) {
-      console.error("Errore nella registrazione:", error);
+      navigate("/");
+    } catch (err) {
+      console.error("Errore nella registrazione:", err);
       setError("Registrazione fallita. Riprova.");
     }
-  }
+  };
 
   return (
-    <form className={styles.registrationForm} onSubmit={handleSubmit}>
+    <form className={styles.registrationForm} onSubmit={submitForm}>
       <h2 className={styles.formTitle}>Registrazione</h2>
 
       <div className={styles.formGroup}>
@@ -66,6 +120,9 @@ const RegistrationForm = () => {
           onChange={handleChange}
           required
         />
+        {formErrors.username && (
+          <p style={{ color: "red" }}>{formErrors.username}</p>
+        )}
       </div>
 
       <div className={styles.formGroup}>
@@ -77,6 +134,7 @@ const RegistrationForm = () => {
           onChange={handleChange}
           required
         />
+        {formErrors.email && <p style={{ color: "red" }}>{formErrors.email}</p>}
       </div>
 
       <div className={styles.formGroup}>
@@ -88,6 +146,9 @@ const RegistrationForm = () => {
           onChange={handleChange}
           required
         />
+        {formErrors.password && (
+          <p style={{ color: "red" }}>{formErrors.password}</p>
+        )}
       </div>
 
       <div className={styles.formGroup}>
@@ -99,17 +160,20 @@ const RegistrationForm = () => {
           onChange={handleChange}
           required
         />
+        {formErrors.confirmPassword && (
+          <p style={{ color: "red" }}>{formErrors.confirmPassword}</p>
+        )}
       </div>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       <button type="submit">Registrati</button>
 
-      <Link to="/register">
+      <Link to="/">
         <button type="button">Già registrato? Logga qui!</button>
       </Link>
     </form>
   );
-}
+};
 
 export default RegistrationForm;
