@@ -21,26 +21,29 @@ const LoginForm = () => {
     }));
   }
 
-  const submitForm = async (event) => {
-    event.preventDefault();
+ const submitForm = async (event) => {
+  event.preventDefault();
 
-    try {
-      const user = await login({
-        email: input.email,
-        password: input.password,
-      });
+  try {
+    const user = await login({
+      email: input.email,
+      password: input.password,
+    });
 
-      if (user) {
-        dispatch(setUser(user));
-        navigate("/home");
-      } else {
-        alert("Login fallito. Credenziali errate?");
-      }
-    } catch (error) {
-      alert("Errore durante il login. Riprova.");
-      console.error(error);
+    if (user) {
+      dispatch(setUser({
+        ...user,
+        avatar: "io-avatar.jpg" // ✅ avatar aggiunto localmente
+      }));
+      navigate("/");
+    } else {
+      alert("Login fallito. Credenziali errate?");
     }
-  };
+  } catch (error) {
+    alert("Errore durante il login. Riprova.");
+    console.error(error);
+  }
+};
 
   return (
   <form className={styles.loginForm} onSubmit={submitForm}>

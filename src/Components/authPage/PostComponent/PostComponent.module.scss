@@ -1,8 +1,115 @@
-.post_wrapper{
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-bottom: 20px;
+/* PostComponent.module.scss */
+
+.post_wrapper {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Mantiene l'overflow qui per il box-shadow e la forma */
+
+  min-height: 250px;
+  max-height: 450px;
+}
+
+.post_header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 15px;
+
+  .author {
+    font-size: 0.9em;
+    color: #616161;
+    font-weight: 500;
+  }
+
+  .date {
+    font-size: 0.85em;
+    color: #757575;
+    font-style: italic;
+  }
+
+  .title {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #333333;
+    line-height: 1.3;
+    margin-top: 5px;
+  }
+}
+
+.image {
+  margin-bottom: 20px;
+  text-align: center;
+  flex-shrink: 0;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.text-area {
+  font-size: 1.1em;
+  line-height: 1.7;
+  color: #424242;
+  margin-bottom: 25px;
+  white-space: pre-wrap;
+
+  flex-grow: 1;
+  /* Assicurati che il contenitore interno abbia un'altezza definita per lo scroll */
+  /* e che l'overflow-y sia auto per abilitare lo scroll se necessario. */
+  overflow-y: auto;
+  /* Non è necessario padding-right se la scrollbar è invisibile, ma può aiutare l'estetica del testo. */
+  /* padding-right: 15px; */
+
+  /* --- Importante: Proprietà per nascondere la scrollbar --- */
+
+  /* Per WebKit (Chrome, Safari, Edge): */
+  &::-webkit-scrollbar {
+    width: 0px; /* Larghezza della scrollbar a zero */
+    background: transparent; /* Sfondo trasparente */
+  }
+
+  /* Per Firefox: */
+  scrollbar-width: none; /* 'none' per nascondere completamente la scrollbar */
+
+  /* Per Internet Explorer e Edge più vecchi: */
+  -ms-overflow-style: none; /* Nasconde la scrollbar */
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin-top: auto;
+
+  li {
+    list-style: none! important;
+    background-color: #e3f2fd;
+    color: #1976d2;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: #bbdefb;
+    }
+  }
+  
 }

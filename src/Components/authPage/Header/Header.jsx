@@ -15,23 +15,37 @@ const Header = () => {
     dispatch(clearUser());
     navigate("/");
   };
-
+ const avatarPic = user?.avatar || "default-avatar.jpg";
   return (
     <header className={styles.header}>
+      <div className={styles.userInfo}>
+  {user?.accessToken ? (
+    <>
+      <span>{user.username}</span>
+     <img
+  src={avatarPic}
+  alt="avatar"
+  className={styles.avatar}
+  onError={(e) => {
+    e.target.onerror = null; // evita loop infinito
+    e.target.src = "/img/io-avatar.jpg";
+  }}
+/>
+    </>
+  ) : (
+    <span>Non sei loggato</span>
+  )}
+</div>
+
       <div>
-        {user?.username ? `Ciao ${user.username}` : "Non sei loggato"}
-        {user?.avatar && <img src={user.avatar} alt="avatar" className={styles.avatar} />}
-      </div>
-      <div>
-        {user ? (
+        {user.accessToken ? (
           <button onClick={logout} className="button">
             Esci <FaArrowRightFromBracket />
           </button>
         ) : (
-          <button onClick={() => navigate("/")} className="button">
+          <button onClick={() => navigate("/login")} className="button">
             Accedi <FaArrowRightToBracket />
           </button>
-          
         )}
       </div>
     </header>

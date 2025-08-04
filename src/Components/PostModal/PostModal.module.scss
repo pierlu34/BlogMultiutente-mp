@@ -1,0 +1,134 @@
+.modalOverlay {
+  position: fixed; /* Si posiziona sopra tutto */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Sfondo semi-trasparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000; /* Assicura che sia sopra a tutto il resto */
+  backdrop-filter: blur(3px); /* Effetto sfocatura (compatibilità browser) */
+
+}
+
+
+.modalContent {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px; /* Larghezza massima del modale */
+  position: relative; /* Per posizionare il pulsante di chiusura */
+  animation: fadeInScale 0.3s ease-out forwards; /* Animazione all'apertura */
+
+  h2 {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: #757575;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #333333;
+  }
+}
+
+.formGroup {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555555;
+    font-size: 0.95em;
+  }
+
+  input[type="text"],
+  input[type="url"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box; /* Include padding e border nella larghezza */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &:focus {
+      outline: none;
+      border-color: #1976d2; /* Colore blu al focus */
+      box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.2); /* Ombra al focus */
+    }
+  }
+}
+
+.avatarPreview {
+  margin-top: 15px;
+  text-align: center;
+
+  p {
+    font-size: 0.9em;
+    color: #757575;
+    margin-bottom: 10px;
+  }
+
+  img {
+    max-width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Immagine circolare */
+    object-fit: cover; /* Assicura che l'immagine copra l'area senza distorsioni */
+    border: 3px solid #eeeeee; /* Bordo sottile attorno all'avatar */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.saveButton {
+  display: block;
+  width: 100%;
+  padding: 14px 20px;
+  background-color: #1976d2; /* Blu primario */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+
+  &:hover {
+    background-color: #1565c0; /* Blu più scuro al hover */
+    transform: translateY(-1px); /* Leggero sollevamento */
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Animazione di entrata del modale */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
