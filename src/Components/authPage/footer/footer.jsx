@@ -6,12 +6,13 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <Link to="/home" className={styles["icon-button"]}>
+        <Link to="/" className={styles["icon-button"]}>
           <AiOutlineHome />
         </Link>
 
         <Link to="/add-post" className={styles["icon-button"]}>
           <AiOutlinePlusCircle />
+          
         </Link>
 
         <Link to="/profile" className={styles["icon-button"]}>
