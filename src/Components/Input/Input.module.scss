@@ -1,17 +1,24 @@
-.richTextInput {  width:100%;
+.richTextInput {
+  padding: 5px;
+  width: 100%;
   background-color: rgb(153, 175, 221, 0.5);
   margin: 0.1rem;
   min-height: 5rem;
-  min-width: 10rem;
-  border: none;
+  width: 350px;
+  border: 1px solid rgb(0, 0, 0, 0.8);
   border-radius: 4px;
   transition: 0.1s;
   color: darkblue;
   word-break: break-all;
   overflow: hidden;
   text-overflow: ellipsis;
+  word-wrap: break-word; // Per browser più vecchi
+  overflow-wrap: break-word; // La proprietà standard
+  word-break: break-word; // Compatibilità aggiuntiva, o break-all se vuoi interruzione forzata su ogni carattere
+  white-space: normal; // Assicura il wrapping normale
 
   &:focus {
     outline: none;
     background-color: var(--accent-cold);
-  }}
+  }
+}

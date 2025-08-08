@@ -22,13 +22,13 @@
     background-color: rgb(255, 255, 255);
     box-shadow: var(--main-dark) 0px 0px 10px;
     border-radius: 10px;
+    align-items: center;
     position: relative;
 }
 
 .modal_header {
     display:flex;
     justify-content: space-between;
-    align-items: center;
     width: 100%;
     padding: 3px;
 
@@ -41,6 +41,7 @@
 .modal_content {
     margin-top: 20px;
     justify-content: center;
+    align-items: center;
 }
 
 .modal_close_button {

@@ -6,8 +6,11 @@ import { userSelector } from "./reducers/user.slice.js";
 
 function App() {
   const user = useSelector(userSelector);
- // o qualsiasi condizione che conferma l'autenticazione
-
+  const savedUser = JSON.parse(localStorage.getItem("user"));
+  const initialState = {
+  user: savedUser || null,
+  
+};
   return (
     <>
       <main className="main_content" style={{ flex: 1 }}>

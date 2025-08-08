@@ -10,9 +10,9 @@
   display: flex;
   flex-direction: column;
   overflow: hidden; /* Mantiene l'overflow qui per il box-shadow e la forma */
-
-  min-height: 250px;
-  max-height: 450px;
+  min-height: 350px;
+  max-height: 800px;
+  max-width: 400px;
 }
 
 .post_header {
@@ -58,19 +58,16 @@
   }
 }
 
-.text-area {
+.text_area {
   font-size: 1.1em;
   line-height: 1.7;
   color: #424242;
   margin-bottom: 25px;
   white-space: pre-wrap;
-
   flex-grow: 1;
-  /* Assicurati che il contenitore interno abbia un'altezza definita per lo scroll */
-  /* e che l'overflow-y sia auto per abilitare lo scroll se necessario. */
   overflow-y: auto;
-  /* Non è necessario padding-right se la scrollbar è invisibile, ma può aiutare l'estetica del testo. */
-  /* padding-right: 15px; */
+  height: 100px;
+ 
 
   /* --- Importante: Proprietà per nascondere la scrollbar --- */
 
@@ -79,7 +76,6 @@
     width: 0px; /* Larghezza della scrollbar a zero */
     background: transparent; /* Sfondo trasparente */
   }
-
   /* Per Firefox: */
   scrollbar-width: none; /* 'none' per nascondere completamente la scrollbar */
 
@@ -94,22 +90,9 @@
   list-style: none;
   padding: 0;
   margin-top: auto;
+}
 
-  li {
-    list-style: none! important;
-    background-color: #e3f2fd;
-    color: #1976d2;
-    padding: 6px 12px;
-    border-radius: 15px;
-    font-size: 0.8em;
-    font-weight: 600;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-
-    &:hover {
-      background-color: #bbdefb;
-    }
-  }
-  
+.button {
+  border: 1px solid black;
+  border-radius: 8px;
 }

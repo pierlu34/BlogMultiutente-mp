@@ -1,16 +1,104 @@
-li {
-    list-style: none! important;
-    background-color: #e3f2fd;
-    color: #1976d2;
-    padding: 6px 12px;
-    border-radius: 15px;
-    font-size: 0.8em;
-    font-weight: 600;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-
-    &:hover {
-      background-color: #bbdefb;
-    }
+.container {
+  max-height: 550px;
+  max-width: 350px;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  flex-direction: column;
+}
+.body {
+  max-height: 550px;
+  max-width: 350px;
+  display: flex;
+  border: 2px solid rgb(0, 0, 0, 0.8);
+  border-radius: 10px;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  color: rgb(231, 229, 229);
+  background-color: lightgrey;
+}
+.header {
+  max-height: 550px;
+  max-width: 350px;
+  display: flex;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  & h1 {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 10px;
   }
+}
+
+li {
+  list-style: none !important;
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 0.8em;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #bbdefb;
+  }
+}
+.icon-button {
+  width: 44px; /* bottone più piccolo */
+  height: 44px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+.section {
+  max-height: 550px;
+  color: #000000;
+  font-size: 1.2em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+.content {
+  color: #000000;
+}
+.tags {
+  border: 1px solid #000000;
+  font-size: 0.8em;
+  color: #000000;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 10px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  background-color: white;
+  & h4 {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 5px;
+  }
+}
+.footer {
+  color: #000000;
+}

@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
-import { AiOutlineHome, AiOutlinePlusCircle, AiOutlineUser } from "react-icons/ai";
+import {
+  AiOutlineHome,
+  AiOutlinePlusCircle,
+  AiOutlineUser,
+} from "react-icons/ai";
 import styles from "./Footer.module.scss";
 
 const Footer = () => {
@@ -9,11 +13,7 @@ const Footer = () => {
         <Link to="/" className={styles["icon-button"]}>
           <AiOutlineHome />
         </Link>
-
-        <Link to="/add-post" className={styles["icon-button"]}>
-          <AiOutlinePlusCircle />
-          
-        </Link>
+        
 
         <Link to="/profile" className={styles["icon-button"]}>
           <AiOutlineUser />
