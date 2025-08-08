@@ -1,5 +1,5 @@
 // ProfilePage.jsx
-
+import Footer from "../Footer/Footer.jsx";
 import { useState, useEffect, useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { userSelector, updateUser } from "../../../reducers/user.slice.js"; // Importa setUser
@@ -51,7 +51,7 @@ const ProfilePage = () => {
             onClick={() => setIsModalOpen(true)} // Apre il modale
           />
         </div>
-          
+          <Footer/>
       </div>
 
       {/* Il modale, mostrato condizionalmente */}

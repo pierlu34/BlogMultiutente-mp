@@ -55,33 +55,28 @@ const HomePage = () => {
   useEffect(() => {
     retrievePosts();
   }, [socketReady, socket]);
-
   return (
     <>
       <div>
-        <Header />
-        <h1 className={styles.h1}>Benvenuto nella Home</h1>
         <List items={posts} />
       </div>
 
-      {isLoggedIn && (
-        <footer className={styles.footer}>
-          <div className={styles.container}>
-            <Link to="/" className={styles["icon-button"]}>
-              <AiOutlineHome />
-            </Link>
-            <button
-              className={styles["icon-button"]}
-              onClick={() => setIsModalOpen(true)}
-            >
-              <AiOutlinePlusCircle />
-            </button>
-            <Link to="/profile" className={styles["icon-button"]}>
-              <AiOutlineUser />
-            </Link>
-          </div>
-        </footer>
-      )}
+      <footer className={styles.footer}>
+        <div className={styles.container}>
+          <Link to="/" className={styles["icon-button"]}>
+            <AiOutlineHome />
+          </Link>
+          <button
+            className={styles["icon-button"]}
+            onClick={() => setIsModalOpen(true)}
+          >
+            <AiOutlinePlusCircle />+
+          </button>
+          <Link to="/profile" className={styles["icon-button"]}>
+            <AiOutlineUser />
+          </Link>
+        </div>
+      </footer>
 
       {isModalOpen &&
         createPortal(

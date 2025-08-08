@@ -1,5 +1,6 @@
 import styles from "./Input.module.scss";  // o il tuo CSS
 
+
 const RichTextInput = ({ id, label, ref, onInput }) => {
 
   const toggleStyle = (style) => {
@@ -34,7 +35,7 @@ const RichTextInput = ({ id, label, ref, onInput }) => {
         />
       </div>
 
-      <div>
+      <div className={styles.toolbar}>
         <button type="button" onClick={() => toggleStyle("b")}>Grassetto</button>
         <button type="button" onClick={() => toggleStyle("i")}>Corsivo</button>
         <button type="button" onClick={() => toggleStyle("u")}>Sottolineato</button>

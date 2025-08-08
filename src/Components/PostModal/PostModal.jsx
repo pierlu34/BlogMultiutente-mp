@@ -47,6 +47,8 @@ const PostModal = ({ isOpen, onClose, onConfirm, existingPost }) => {
               label="Contenuto"
               value={richContentValue}
               onInput={handleRichContentInput}
+              ref={ref}
+              
             />{" "}
             {/* <Input id="image" error={updatesErrors.avatar} name="image" placeholder="Inserisci il link all'immagine del post" maxLength={100} onChange={imageUrlChange} value={imageUrl} /> */}
             <p>TODO: AGGIUNGERE I TAG</p>
