@@ -53,12 +53,25 @@ const useSocketEmit = () => {
       });
     });
   };
+  const toggleLike = (postId) => {
+                return new Promise((resolve, reject) => {
+            socket.emit(config.socket.actions.TOGGLE_LIKE, postId, (response) => {
+                if(response.success) {
+                    resolve(response.data);
+                } else {
+                    reject(response.error);
+                }
+            })
+        })
+
+    }
 
   return {
     createPost,
     getTags,
     editPost,
     deletePost,
+    toggleLike,
   };
 };
 

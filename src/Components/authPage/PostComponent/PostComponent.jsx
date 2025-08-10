@@ -3,6 +3,7 @@ import styles from "./PostComponent.module.scss";
 import { useNavigate } from "react-router-dom";
 import Header from "../Header/Header.jsx";
 import Footer from "../Footer/Footer.jsx";
+import { Eye } from "lucide-react";
 
 const Post = ({ post }) => {
   const navigate = useNavigate();
@@ -22,7 +23,10 @@ const Post = ({ post }) => {
         </div>
       )}
 
-      <div className={styles.text_area} dangerouslySetInnerHTML={{ __html: post.content }}></div>
+      <div
+        className={styles.text_area}
+        dangerouslySetInnerHTML={{ __html: post.content }}
+      ></div>
 
       <div className={styles.tags}>
         {Array.isArray(post.tags) && post.tags.length > 0 ? (
@@ -31,7 +35,20 @@ const Post = ({ post }) => {
           <p>Nessun tag</p>
         )}
       </div>
-      <button onClick= {()=>navigate(`posts/${post.id}`)}>Dettaglio</button>
+      <footer className={styles.footer}>
+        <p>
+          Ci sono {post.total_likes}{" "}
+          {post.total_likes === 1 ? "like" : "like"}
+        </p>
+        <p>
+          Ci sono {post.total_comments}{" "}
+          {post.total_comments === 1 ? "commento" : "commenti"}
+        </p>
+      </footer>
+      <button onClick={() => navigate(`posts/${post.id}`)}>
+        {" "}
+        <Eye />
+      </button>
     </div>
   );
 };

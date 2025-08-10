@@ -4,12 +4,28 @@ import Input from "../Input/Input.jsx";
 import RichTextInput from "../Input/RichTextInput.jsx";
 import useRichInput from "../../hooks/useRichInput.js";
 import styles from "./PostModal.module.scss";
+import {useState} from "react";
+import TagFinder from "../authPage/Tags/Tags.jsx";
+import { FaTimes } from "react-icons/fa";
 
 const PostModal = ({ isOpen, onClose, onConfirm, existingPost }) => {
   const date = Date.now();
   const { value: titleValue, handleChange: titleValueChange } = useInput(
     existingPost?.title ? existingPost.title : ""
   );
+
+  const [tagsArray, setTagsArray] = useState([]);
+
+  const tagListHandler = (newTag) => {
+    if (!newTag) return;
+    setTagsArray((prev) => (prev.includes(newTag) ? prev : [...prev, newTag]));
+  };
+
+  const removeTag = (tagToRemove) => {
+    console.log(tagToRemove)
+    setTagsArray((prev) => prev.filter((t) => t !== tagToRemove));
+  }
+
   const {
     value: richContentValue,
     handleInput: handleRichContentInput,
@@ -21,7 +37,7 @@ const PostModal = ({ isOpen, onClose, onConfirm, existingPost }) => {
       title: titleValue,
       content: richContentValue,
       publishDate: date,
-      tags: [],
+      tags: tagsArray,
     };
     if (existingPost) {
       post.postId = existingPost.id;
@@ -51,7 +67,10 @@ const PostModal = ({ isOpen, onClose, onConfirm, existingPost }) => {
               
             />{" "}
             {/* <Input id="image" error={updatesErrors.avatar} name="image" placeholder="Inserisci il link all'immagine del post" maxLength={100} onChange={imageUrlChange} value={imageUrl} /> */}
-            <p>TODO: AGGIUNGERE I TAG</p>
+            <div className={styles.selected_tags}>
+              {tagsArray.map((tag) =><button key={tag} type="button" onClick={()=>removeTag(tag)}>#{tag} <FaTimes/></button>)}
+            </div>
+            <TagFinder addTag={tagListHandler} tagsAlreadyAdded={tagsArray}/>
           <button type="submit" className="submit_button">
             Invia
           </button>

@@ -9,12 +9,13 @@ import useSocketEmit from "../../hooks/useSocketEmit.js";
 import { useSelector, useDispatch } from "react-redux";
 import { userSelector } from "../../reducers/user.Slice.js";
 import { removePost } from "../../reducers/post.slice.js";
-
+import { Heart, Pencil, Trash2, Image } from "lucide-react";
+import Like from "../authPage/Like/Like.jsx";
 
 const PostDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [post, setPost] = useState(null);
-  const { editPost,deletePost } = useSocketEmit();
+  const { editPost, deletePost } = useSocketEmit();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
@@ -40,14 +41,14 @@ const PostDetails = () => {
       editPost(payLoad)
         .then((data) => setPost(data))
         .catch((error) => console.error(error));
-    setIsModalOpen(false);
+      setIsModalOpen(false);
     }
   };
 
   const getThisPost = async (id) => {
     try {
       const data = await getPostById(id);
-      setPost({...data, id:data._id}); // Assuming the service returns an object with _id
+      setPost({ ...data, id: data._id }); // Assuming the service returns an object with _id
     } catch (error) {
       console.error("Errore nel recupero del post:", error);
     } finally {
@@ -82,7 +83,7 @@ const PostDetails = () => {
       <div className={styles.container}>
         <div className={styles.body}>
           <div className={styles.detail}>
-            <header className={styles.header}>
+            <section className={styles.content}>
               <h1 className={styles.title}>{post.title}</h1>
               <div className={styles.meta}>
                 <span>
@@ -93,35 +94,34 @@ const PostDetails = () => {
                   Autore: <strong>{post.authorId}</strong>
                 </span>
               </div>
-            </header>
-
-            {post.image && (
-              <div className={styles.imageWrapper}>
-                <Image
-                  src={post.image || io-avatar.jpg}
-                  alt={`Immagine di copertina per ${post.title}`}
-                />
-              </div>
-            )}
-
-            <section
-              className={styles.content}
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            ></section>
-
-            <section className={styles.tags}>
-              <h4>Tag:</h4>
-              {post.tags?.length > 0 ? (
-                <ul>
-                  {post.tags.map((tag) => (
-                    <li key={tag}>#{tag}</li>
-                  ))}
-                </ul>
-              ) : (
-                <p>Nessun tag presente</p>
+              {post.image && (
+                <div className={styles.imageWrapper}>
+                  <Image
+                    src={post.image || "io-avatar.jpg"}
+                    alt={`Immagine di copertina per ${post.title}`}
+                  />
+                </div>
               )}
+              <div
+                className={styles.text_content}
+                dangerouslySetInnerHTML={{ __html: post.content }}
+              />
+              <div className={styles.tags}>
+                <h4>Tag:</h4>
+                {post.tags?.length > 0 ? (
+                  <ul className={styles.ul}>
+                    {post.tags.map((tag) => (
+                      <li key={tag}>#{tag}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>Nessun tag presente</p>
+                )}
+              </div>
             </section>
-
+            
+              <Like id={post.id} renderAgain={() => getThisPost(post.id)} />
+              <p>{post.total_likes}</p>
             <footer className={styles.footer}>
               {post.total_comments > 0 ? (
                 <p>Ci sono {post.total_comments} commenti</p>
@@ -131,9 +131,13 @@ const PostDetails = () => {
             </footer>
           </div>
           {user.id === post.authorId && (
-            <div>
-              <button onClick={() => setIsModalOpen(true)}>Edit Detail</button>
-              <button onClick={() => cancelPost(post)}>Delete Detail</button>
+            <div className={styles.actions}>
+              <button onClick={() => setIsModalOpen(true)}>
+                <Pencil /> Edit
+              </button>
+              <button onClick={() => cancelPost(post)}>
+                <Trash2 /> Delete
+              </button>
             </div>
           )}
         </div>

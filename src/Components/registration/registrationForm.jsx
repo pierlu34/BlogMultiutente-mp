@@ -169,7 +169,7 @@ const RegistrationForm = () => {
 
       <button type="submit">Registrati</button>
 
-      <Link to="/">
+      <Link to="/login">
         <button type="button">Già registrato? Logga qui!</button>
       </Link>
     </form>
